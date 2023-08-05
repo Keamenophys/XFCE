@@ -10,7 +10,7 @@ echo "WARNING!! - Execute only in a fresh vanilla installation"
 sleep 5
 
 ## CHANGE FreeBSD REPOS TO LATEST
-#sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
+sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
 
 ## REBUILD AND UPDATE PKG DATABASE 
 echo "Upgrading packages..."
