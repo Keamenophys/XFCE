@@ -29,8 +29,9 @@ pwcview
 qjackctl
 shotwell
 sierra-gtk-themes
-slim
-slim-themes
+# slim
+# slim-themes
+xdm
 sudo
 sctd
 thunar-archive-plugin
