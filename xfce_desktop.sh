@@ -10,7 +10,7 @@ echo "WARNING!! - Execute only in a fresh vanilla installation"
 sleep 5
 
 ## CHANGE FreeBSD REPOS TO LATEST
-sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
+# sed -i '' 's/quarterly/latest/g' /etc/pkg/FreeBSD.conf
 
 ## REBUILD AND UPDATE PKG DATABASE 
 echo "Upgrading packages..."
@@ -19,7 +19,7 @@ pkg update && pkg upgrade -y
 echo ""
 
 ## FETCH FreeBSD PORTS
-echo "Downloading Ports tree...";
+echo "Telechargement Arborescence Ports...";
 echo ""
 portsnap fetch auto
 echo ""
@@ -32,7 +32,7 @@ echo "MAKE_JOBS_NUMBER?=$CPUCORES" >> /etc/make.conf
 echo "OPTIONS_SET=OPTIMIZED_CFLAGS CPUFLAGS" >> /etc/make.conf
 
 ## INSTALLS BASE DESKTOP AND CORE UTILS
-echo "Installing desktop..."
+echo "Installation du bureau..."
 echo ""
 xargs pkg install -y < system_packages
 
@@ -40,13 +40,17 @@ xargs pkg install -y < system_packages
 echo "Enabling basic services"
 sysrc moused_enable="YES"
 sysrc dbus_enable="YES"
-sysrc slim_enable="YES"
 sysrc update_motd="NO"
 sysrc dsbmd_enable="YES"
 echo ""
 
+## CONFIGURATION DE XDM 
+mv /etc/ttys /etc/ttys.bk
+
+mv ttys /etc/
+
 ## CHANGE SLIM THEME TO FBSD
-sed -i '' 's/current_theme       default/current_theme       fbsd/g' /usr/local/etc/slim.conf
+# sed -i '' 's/current_theme       default/current_theme       fbsd/g' /usr/local/etc/slim.conf
 
 ## CREATES .xinitrc SCRIPT FOR A REGULAR DESKTOP USER
 echo ; read -p "Want to enable XFCE for a regular user? (yes/no): " X;
@@ -129,8 +133,8 @@ sysrc pf_enable="YES"
 sysrc pf_rules="/etc/pf.conf" 
 sysrc pflog_enable="YES"
 sysrc pflog_logfile="/var/log/pflog"
-sysrc ntpd_enable="YES"
-sysrc ntpdate_enable="YES"
+sysrc ntpd_enable="NO"
+sysrc ntpdate_enable="NO"
 sysrc powerd_enable="YES"
 sysrc powerd_flags="-n hiadaptive -a hiadaptive -b adaptive"
 sysrc performance_cx_lowest="C1"
