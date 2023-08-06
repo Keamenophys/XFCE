@@ -45,8 +45,14 @@ sysrc dsbmd_enable="YES"
 echo ""
 
 ## CONFIGURATION DE XDM 
-mv /etc/ttys /etc/ttys.bk
 
+touch /usr/local/etc/X11/xdm/Xsetup_0
+echo "xsetroot -solid black" >> /usr/local/etc/X11/xdm/Xsetup_0
+
+mv /usr/local/etc/X11/xdm/Xresources /usr/local/etc/X11/xdm/Xressources.bk
+mv Xresources /usr/local/etc/X11/xdm/
+
+mv /etc/ttys /etc/ttys.bk
 mv ttys /etc/
 
 ## CHANGE SLIM THEME TO FBSD
