@@ -34,7 +34,7 @@ echo "OPTIONS_SET=OPTIMIZED_CFLAGS CPUFLAGS" >> /etc/make.conf
 ## INSTALLS BASE DESKTOP AND CORE UTILS
 echo "Installation du bureau..."
 echo ""
-xargs pkg install -y < system_packages
+xargs pkg install -y < install_XDM
 
 ## ENABLES BASIC SYSTEM SERVICES
 echo "Enabling basic services"
@@ -154,21 +154,16 @@ sysrc sendmail_outbound_enable="NO"
 sysrc sendmail_submit_enable="NO"
 sysrc dumpdev="NO"
 sysrc webcamd_enable="YES"
-sysrc jackd_enable="YES"
-sysrc jackd_user="$user"
-sysrc jackd_rtprio="YES"
-## Change JACK /dev/dsp7 by your own interfaces
-sysrc jackd_args="-doss -r48000 -p256 -n1 -w16 --capture /dev/dsp7 --playback /dev/dsp7"
-echo ""
+
 
 ## UPDATES CPU MICROCODE
-echo "Updating CPU microcode..."
+echo "mise a jour du CPU microcode..."
 echo ""
 pkg install -y devcpu-data
 sysrc microcode_update_enable="YES"
 service microcode_update start
 echo ""
-echo "Microcode updated"
+echo "Microcode est a jour"
 echo ""
 
 ## CLEAN CACHES AND AUTOREMOVES UNNECESARY FILES
